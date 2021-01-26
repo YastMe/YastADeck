@@ -67,3 +67,4 @@ img = img.zoom(10)
 img = img.subsample(32)
 boton1 = tk.Button(principal, text="Reroll?", image = img, command=sacar).grid(column=0, row=0, padx=10, pady=1)
 principal.mainloop()
+
