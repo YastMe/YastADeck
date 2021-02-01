@@ -28,9 +28,7 @@ def sacar():
     img = tk.PhotoImage(file=ruta)
     img = img.zoom(10)
     img = img.subsample(32)
-    label01 = tk.Label(principal, text="Se muestra una imagen", image=img)
-    label01.grid(column=0, row=0, padx=10, pady=10)
-    label01.update()
+    boton1 = tk.Button(principal, text="Reroll?", image = img, command=sacar).grid(column=0, row=0, padx=10, pady=1)
 
 
 f = open("deck", "r", encoding="utf-8")
@@ -59,12 +57,18 @@ boton1= tk.Button(principal, text="Dame cartas", command=quit).grid(column=4, ro
 principal.mainloop()
 
 principal = tk.Tk()
+canvas = tk.Canvas(principal, width=60, height=60)
+canvas.pack()
+button = tk.Button(principal, text="Reroll", command=sacar)
+button.pack()
 ventana2()
 
-ruta = "Imagenes/" + str(random.randint(1, 22)) + ".png"
-img = tk.PhotoImage(file=ruta)
-img = img.zoom(10)
-img = img.subsample(32)
-boton1 = tk.Button(principal, text="Reroll?", image = img, command=sacar).grid(column=0, row=0, padx=10, pady=1)
+img = []
+for x in range(1,22):
+    ruta = "Imagenes/" + str(x) + ".png"
+    img.append(tk.PhotoImage(file=ruta))
+img = img[random.randint(1,22)].zoom(10)
+img = img[random.randint(1,22)].subsample(32)
+image_id = canvas.create_image(0, 0, anchor='nw', image=img)
 principal.mainloop()
 
